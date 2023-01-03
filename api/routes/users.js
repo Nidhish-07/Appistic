@@ -16,9 +16,9 @@ router.get("/checkAdmin/:id", verifyAdmin, (req, res, next) => {
     res.send("You are admin and can delete all accounts")
 })
 
-router.put("/:id", updateUser)
-router.delete("/:id", deleteUser)
-router.get("/:id", getUser)
-router.get("/", getAllUsers)
+router.put("/:id", verifyUser,updateUser)
+router.delete("/:id", verifyUser,deleteUser)
+router.get("/:id", verifyUser,getUser)
+router.get("/", verifyAdmin,getAllUsers)
 
 export default router
