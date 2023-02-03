@@ -20,6 +20,10 @@ const Header = () => {
     const [options, setOptions] = React.useState({
         adult: 1, children: 0, roomNo: 9
     })
+
+    const optionHandler = (name, operator) => {
+        setOptions(prev => { return { ...prev, [name]: operator === 'pos' ? options[name] + 1 : options[name] - 1 } })
+    }
     return (
         <div className='bg-blue-600 text-white flex justify-center relative'>
             <div className='w-full max-w-[1024px] mt-5 mx-0 mb-24'>
@@ -66,36 +70,36 @@ const Header = () => {
                     </div>
                     <div className='flex gap-2 items-center '>
                         <BsFillPersonFill color='#D3D3D3' />
-                        <span className='text-zinc-400 cursor-pointer'>{`${options.adult} adult . ${options.children} children . ${options.roomNo} room`}</span>
-                        <div className='absolute top-12 bg-white text-zinc-500 rounded shadow-lg gap-2'>
+                        <span className='text-zinc-400 cursor-pointer' onClick={()=>setOpenOptions(!openOptions)}>{`${options.adult} adult . ${options.children} children . ${options.roomNo} room`}</span>
+                        {openOptions && <div className='absolute top-12 bg-white text-zinc-500 rounded shadow-lg gap-2'>
                             <div className='w-48 flex justify-between'>
                                 <span>Adult</span>
                                 <div className='flex items-center gap-2 text-xs text-black'>
 
-                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={()=>optionHandler("adult","neg")}>-</button>
-                                    <span>1</span>
-                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={()=>optionHandler("adult","pos")}>+</button>
+                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer disabled:cursor-not-allowed' onClick={() => optionHandler("adult", "neg")} disabled={options.adult === 0}>-</button>
+                                    <span>{options.adult}</span>
+                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={() => optionHandler("adult", "pos")}>+</button>
                                 </div>
                             </div>
                             <div className='w-48 flex justify-between'>
                                 <span>Children</span>
                                 <div className='flex items-center gap-2 text-xs text-black'>
 
-                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={()=>optionHandler("children","neg")}>-</button>
-                                    <span>0</span>
-                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={()=>optionHandler("children","pos")}>+</button>
+                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer disabled:cursor-not-allowed' onClick={() => optionHandler("children", "neg")} disabled={options.children === 0}>-</button>
+                                    <span>{options.children}</span>
+                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={() => optionHandler("children", "pos")}>+</button>
                                 </div>
                             </div>
                             <div className='w-48 flex justify-between'>
                                 <span>Room</span>
                                 <div className='flex items-center gap-2 text-xs text-black'>
 
-                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={()=>optionHandler("room","neg")}>-</button>
-                                    <span>1</span>
-                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={()=>optionHandler("room","pos")}>+</button>
+                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer disabled:cursor-not-allowed' onClick={() => optionHandler("roomNo", "neg")} disabled={options.roomNo === 0}>-</button>
+                                    <span>{options.roomNo}</span>
+                                    <button className='w-7 h-7 border-2 border-solid border-blue-500 cursor-pointer' onClick={() => optionHandler("roomNo", "pos")}>+</button>
                                 </div>
                             </div>
-                        </div>
+                        </div>}
                     </div>
                     <div className='flex gap-2 items-center '>
                         <button className='bg-blue-400 p-2 rounded'>Search</button>
