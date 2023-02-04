@@ -91,7 +91,7 @@ const Header = (props) => {
                                         onChange={(item) => setDate([item.selection])}
                                         moveRangeOnFirstSelection={false}
                                         ranges={date}
-                                        className="absolute top-12"
+                                        className="absolute top-12 z-10"
                                     />
                                 )}
                             </div>
@@ -102,7 +102,7 @@ const Header = (props) => {
                                     onClick={() => setOpenOptions(!openOptions)}
                                 >{`${options.adult} adult . ${options.children} children . ${options.roomNo} room`}</span>
                                 {openOptions && (
-                                    <div className="absolute top-12 bg-white text-zinc-500 rounded shadow-lg gap-2">
+                                    <div className="absolute top-12 bg-white text-zinc-500 rounded shadow-lg gap-2 z-10 p-2">
                                         <div className="w-48 flex justify-between">
                                             <span>Adult</span>
                                             <div className="flex items-center gap-2 text-xs text-black">
